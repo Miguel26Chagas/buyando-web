@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a0a0a;
+  --color-secondary: #f5f5f5;
+  --breakpoint-xsm: 390px;
+}
+
+.no-scrollbar {
+  -ms-text-overflow: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'line seed jp';
+  src: url('./assets/fonts/LINESeedJP-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'line seed jp';
+}
+
+button {
+  cursor: pointer;
+}
+
+.active {
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  border: none;
+}
