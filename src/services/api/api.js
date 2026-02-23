@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuthStore } from "../../stores/authStore";
 
-// let urlLocal = 'http://localhost:8000' 
+let urlLocal = 'http://localhost:8000' 
 let urlTunnel = 'https://buyandoback.share.zrok.io'
 
 const api = axios.create({
@@ -13,7 +13,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
     const token = useAuthStore.getState().token
-    console.log(token)
+    console.log()
     if (token) {
         config.headers.Authorization = `Bearer ${token}`
     }

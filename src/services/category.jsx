@@ -13,7 +13,7 @@ export const CategoryScroll = () => {
     const [activeId, setActiveId] = useState(1);
 
     return (
-        <div className="categories flex  overflow-x-auto no-scrollbar text-[9pt]">
+        <div className="categories flex overflow-x-auto no-scrollbar text-[9pt]">
             {CATEGORIES.map((cat) => {
                 const isActive = activeId == cat.id;
 
@@ -21,7 +21,7 @@ export const CategoryScroll = () => {
                     <button 
                         key={cat.id}
                         onClick={() => setActiveId(cat.id)}
-                        className={`category flex-none p-1.5 px-3 mr-4 rounded-md ${isActive ? 'active' : ' text-primary border border-gray-300/50'}`}
+                        className={`category flex-none p-1.5 px-3 mr-4 rounded-md ${isActive ? 'active' : 'hover:bg-gray-50 text-primary border border-gray-300/50'}`}
                     >{cat.label}</button>
                 )
             })}

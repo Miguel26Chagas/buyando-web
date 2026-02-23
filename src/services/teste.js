@@ -1,18 +1,9 @@
-import { create } from "zustand";
+const formData = new FormData()
 
-const useBear = create((set) => ({
-    bears: 0,
-    increadePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-    removeAllBears: () => set({bears: 0}),
-    updateBears: (newBears) => set({ bears: newBears }),
-}))
+formData.append("key1", "value1");
+formData.append("key2", "value2");
 
-function BearCounter() {
-    const bears = useBear((state) => state.bears)
-    return <h1>{bears} bears around here...</h1>
-  }
-
-  function Controls() {
-    const increasePopulation = useBear((state) => state.increasePopulation)
-    return <button onClick={increasePopulation}>one up</button>
-  }
+// Display the key/value pairs
+for (const pair of formData.entries()) {
+  console.log(pair[0], pair[1]);
+}

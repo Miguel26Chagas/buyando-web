@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Link, useNavigate } from "react-router-dom"
+import { ShoppingBag, LogOut, Settings, User, Wallet, Store} from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { useAuthStore } from "../stores/authStore"
 
@@ -57,9 +58,9 @@ export const Thumbnail = () => {
   if (!user) return null
 
   const avatarUrl =
-    user.user.profile_photo !== "No Profile Photo"
-      ? user.user.profile_photo
-      : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.user.name)}`
+    user.profile_photo !== "No Profile Photo"
+      ? user.profile_photo
+      : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(user.name)}`
 
   const handleLogout = () => {
     logout()
@@ -84,38 +85,60 @@ export const Thumbnail = () => {
         >
           <div className="px-4 py-3 border-b border-gray-100 dark:border-zinc-800">
             <p className="text-sm font-semibold text-white truncate">
-              {user.user.name}
+              {user.name}
             </p>
-            {user.user.email && (
+            {user.email && (
               <p className="text-xs text-gray-400 truncate mt-0.5">
-                {user.user.email}
+                {user.email}
               </p>
             )}
           </div>
-
-          <div className="py-1.5">
+          <div className="py-1.5 border-b border-gray-100 dark:border-zinc-800">
             <Link
               to="/profile"
               onClick={() => setIsOpen(false)}
               className="flex items-center px-4 py-2 text-sm text-gray-700 text-zinc-300 hover:bg-gray-50 hover:bg-zinc-800 transition-colors"
             >
-              Perfil
+              <ShoppingBag size={16} className="mr-4"/> Minhas Compras
             </Link>
             <Link
               to="/settings"
               onClick={() => setIsOpen(false)}
               className="flex items-center px-4 py-2 text-sm text-gray-700 text-zinc-300 hover:bg-gray-50 hover:bg-zinc-800 transition-colors"
             >
-              Definições
+              <Wallet size={16} className="mr-4"/> Carteira <span className="text-orange-700 text-[8.4pt] ml-1">0.00 Kz</span>
             </Link>
           </div>
-
+          <div className="py-1.5 py-1.5 border-b border-gray-100 dark:border-zinc-800">
+            <Link
+              to="/user/profile"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center px-4 py-2 text-sm text-gray-700 text-zinc-300 hover:bg-gray-50 hover:bg-zinc-800 transition-colors"
+            >
+              <User size={16} className="mr-4"/> Perfil
+            </Link>
+            <Link
+              to="/settings"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center px-4 py-2 text-sm text-gray-700 text-zinc-300 hover:bg-gray-50 hover:bg-zinc-800 transition-colors"
+            >
+               <Settings size={16} className="mr-4"/> Definições
+            </Link>
+          </div>
+          <div className="py-1.5">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="flex items-center w-100 px-4 text-sm py-2  font-bold text-cyan-600 hover:bg-zinc-800 transition-colors"
+            >
+               <Store size={16} className="mr-4"/> Começe a vender
+            </button>
+          </div>
           <div className="py-1.5 border-t border-gray-100 border-zinc-800">
             <button
               onClick={handleLogout}
               className="flex w-full items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50 hover:bg-red-950 transition-colors"
             >
-              Terminar sessão
+              <LogOut size={16} className="mr-4 text-zinc-300"/> Terminar sessão
             </button>
           </div>
         </motion.div>

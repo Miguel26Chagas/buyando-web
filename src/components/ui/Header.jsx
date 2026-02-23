@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, useScroll, useMotionValueEvent } from "motion/react"
-import { SlidersHorizontal } from "lucide-react"
+import { SlidersHorizontal, ShoppingCart } from "lucide-react"
 import { TopUserBar } from "./TopUserBar"
 import { CategoryScroll } from "../../services/category"
 import { useAuthStore } from "../../stores/authStore"
@@ -22,34 +22,48 @@ export const Header = () => {
   })
 
   return (
-    <div className="sticky top-0 z-40 w-full bg-white">
-      <header className="w-[90%] max-w-[420px] mx-auto">
+    <div className="sticky top-0 z-40 w-full bg-white overflow-hidden">
+      <header className="w-[90%] max-w-[420px] mx-auto flex flex-col">
+        
         <motion.div
           initial="visible"
           animate={visible ? "visible" : "hidden"}
           variants={{
-            visible: { height: "auto", opacity: 1, marginBottom: 0 },
-            hidden: { height: 0, opacity: 0, marginBottom: 0 }
+            visible: { 
+              height: "auto", 
+              opacity: 1,
+              transition: {stiffness: 300, damping: 30, duration: 0.3 } 
+            },
+            hidden: { 
+              height: 0, 
+              opacity: 0,
+              transition: { duration: 0.2, ease: "easeInOut" } 
+            }
           }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="overflow-hidden"
         >
-          {isAuthenticated && <TopUserBar />}
-          <div className="mt-1">
-            <form className='flex flex-row justify-between items-center mt-3 pb-1'>
+
+          <motion.div
+            variants={{
+              visible: { y: 0 },
+              hidden: { y: -20 } 
+            }}
+            className="pt-1"
+          >
+            {isAuthenticated && <TopUserBar />}
+            <form className="flex flex-row justify-between items-center mt-3 pb-1">
               <input 
                 type="search" 
                 placeholder="Buscando..." 
-                className="border border-gray-300/50 pl-2 mr-2 p-2 shadow-sm w-[95%] rounded-md"
+                className="border border-gray-300/50 pl-2 mr-2 p-2 shadow-sm w-[83%] rounded-md"
               />
-              <button className="p-2 px-3.5 bg-primary text-secondary rounded-md shadow-sm">
-                <SlidersHorizontal />
+              <button type="button" className="p-2 px-3.5 bg-primary text-secondary rounded-md shadow-sm">
+                <ShoppingCart />
               </button>
             </form>
-          </div>
+          </motion.div>
         </motion.div>
 
-        <div className="mb-2 pt-4 pb-3.5 max-w-[420px] m-auto">
+        <div className="relative bg-white mb-2 pt-4 pb-3.5 max-w-[420px] m-auto w-full">
           <CategoryScroll />
         </div>
       </header>

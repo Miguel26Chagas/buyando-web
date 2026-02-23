@@ -4,6 +4,7 @@ import { Teste } from "./pages/Teste";
 import { Home } from "./pages/Home";
 import { Register } from "./pages/Register";
 import { UserUI } from "./pages/UserUI"
+import { Profile } from "./pages/Profile";
 import { GuardRoute } from "./guards/guardRoutes";
 
 export const App = () => {
@@ -18,6 +19,9 @@ export const App = () => {
         {/* Private Routes */}
         <Route element={<GuardRoute />}>
           <Route path="/user/dashboard" element={<UserUI />} />
+        </Route>
+        <Route element={<GuardRoute />}>
+          <Route path="/user/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

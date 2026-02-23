@@ -10,7 +10,7 @@ export const CardProduct = () => {
         const controller = new AbortController();
         let urlLocal = 'http://localhost:8000' 
         let urlTunnel = 'https://buyandoback.share.zrok.io'
-        let url = urlTunnel || urlLocal
+        let url = urlTunnel
 
         const get_data = async () => {
             try {
@@ -56,7 +56,7 @@ export const CardProduct = () => {
                         <Store className="w-[14px] mx-1.5 ml-[18px]" />
                         <span className="truncate text-blue-400 py-2 cursor-pointer">{product.seller.seller_name}</span>
                     </div>
-                    <button className="flex justify-center items-center p-3 px-3.5 bg-primary mb-3 w-full text-secondary rounded-lg shadow-[0_0_3px_rgba(0,0,0,0.3)] m"><ShoppingCart className="mr-2 w-[18px]" /> Comprar</button>
+                    <button className="flex justify-center items-center p-3 px-3.5 hover:bg-zinc-800 bg-primary mb-3 w-full text-secondary rounded-lg shadow-[0_0_3px_rgba(0,0,0,0.3)] m"><ShoppingCart className="mr-2 w-[18px]" /> Comprar</button>
                 </div>
             ))}
         </div>
